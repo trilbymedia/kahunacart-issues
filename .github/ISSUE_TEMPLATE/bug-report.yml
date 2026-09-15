@@ -1,0 +1,129 @@
+name: Bug report
+description: Something in KahunaCart is broken or behaves differently from the docs
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. The single most useful thing you can give us is the **support report**. It carries the Grav, PHP, KahunaCart and add-on versions, the database engine, pending migrations, provider state and template drift, with every secret redacted. Get it either way:
+
+        - In the admin: **KahunaCart → Health → Copy support report**
+        - From a shell: `bin/plugin kahunacart check --report`
+
+        Paste it into the field below. Everything else here helps us reproduce what you saw.
+  - type: textarea
+    id: summary
+    attributes:
+      label: What went wrong
+      description: One or two sentences. What were you doing, and what did KahunaCart do instead?
+      placeholder: Checkout shows "Something went wrong" after the customer picks a shipping method.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Where it happens
+      description: Pick the closest match.
+      options:
+        - Storefront (catalog, cart, checkout, customer account)
+        - Admin (KahunaCart section in Admin Next)
+        - Payments or a payment provider
+        - Order emails or owner notifications
+        - Licenses add-on
+        - Subscriptions add-on
+        - Newsletters add-on
+        - Shipping add-on
+        - CLI, scheduler or background jobs
+        - Installation, upgrade or migration
+        - REST API or a developer integration
+        - Something else
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Exactly what you did, in order, so we can do the same. Include the product, coupon or setting involved if it matters.
+      placeholder: |
+        1. Add a product with a variant to the cart
+        2. Go to /checkout and enter a UK address
+        3. Choose "Standard" shipping
+        4. Click "Pay"
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: What happened instead
+      description: Include the exact error message if there was one.
+    validations:
+      required: true
+  - type: textarea
+    id: report
+    attributes:
+      label: Support report
+      description: Paste the output of `bin/plugin kahunacart check --report`, or the text from Health → Copy support report. Secrets are already redacted. If you really cannot produce it, write "not available" here and fill in the versions field below.
+      render: text
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Versions (only if the support report is not available)
+      description: Grav, PHP, KahunaCart, any add-on involved, and the database engine.
+      placeholder: Grav 2.1.0, PHP 8.3, KahunaCart 1.2.9, Stripe driver 1.2.2, SQLite
+  - type: dropdown
+    id: theme
+    attributes:
+      label: Storefront theme
+      description: Template overrides are the usual reason a fix does not show up, so this matters for anything visual or checkout-related.
+      options:
+        - Kahuna, unmodified
+        - Kahuna with template overrides
+        - A custom theme
+        - Not relevant (admin, CLI or API only)
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Grav log
+      description: The lines from `logs/grav.log` around the time it happened. The KahunaCart entries are prefixed with the plugin name. Trim anything that looks like a key or token.
+      render: text
+  - type: textarea
+    id: console
+    attributes:
+      label: Browser console or network errors
+      description: For storefront or admin problems, open the browser's developer tools and paste any red lines from the Console tab, and the failing request from the Network tab with its status code.
+      render: text
+  - type: input
+    id: hosting
+    attributes:
+      label: Hosting
+      description: Web server, whether it is shared hosting or your own box, and whether the site sits behind Cloudflare or another proxy.
+      placeholder: nginx on a VPS, behind Cloudflare
+  - type: textarea
+    id: extra
+    attributes:
+      label: Anything else
+      description: Screenshots, a link to a page that shows the problem, config snippets with secrets removed, or a guess at the cause if you have one.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before you send
+      options:
+        - label: I searched the open and closed issues and did not find this already reported
+          required: true
+        - label: I am on the latest KahunaCart release, or I have said which version above
+          required: true
+        - label: I cleared the cache (`bin/grav clearcache`) and the problem is still there
+          required: true
+        - label: Nothing I pasted contains an API key, webhook secret or customer data
+          required: true

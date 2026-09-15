@@ -1,0 +1,69 @@
+name: Feature request
+description: Something KahunaCart does not do yet, or does in a way that gets in your way
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Start with the problem, not the solution. A clear picture of what you are trying to do for your store is worth more than a design, and often leads to a better one.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What are you trying to do?
+      description: Describe the job as a store owner or developer. What do you sell, what does the customer or you need to happen, and where does KahunaCart stop short today?
+      placeholder: I sell bundles of three products at a discount, and there is no way to make the bundle a single line in the cart.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What would you like KahunaCart to do?
+      description: Your idea of the behaviour. Screens, CLI commands, config keys, whatever fits.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Catalog and products
+        - Cart and checkout
+        - Payments or a payment provider
+        - Orders, fulfilment and customers
+        - Coupons, discounts and pricing
+        - Taxes and regions
+        - Emails and notifications
+        - Reports
+        - Licenses add-on
+        - Subscriptions add-on
+        - Newsletters add-on
+        - Shipping add-on
+        - Admin UI
+        - Storefront theme
+        - CLI, scheduler or background jobs
+        - REST API or developer hooks
+        - Something else
+    validations:
+      required: true
+  - type: dropdown
+    id: frequency
+    attributes:
+      label: How often does this come up?
+      options:
+        - On every order
+        - Daily
+        - Now and then
+        - Once, for a specific setup
+    validations:
+      required: true
+  - type: textarea
+    id: workaround
+    attributes:
+      label: How do you handle it today?
+      description: A manual step, a template override, a custom plugin, or nothing at all.
+  - type: textarea
+    id: extra
+    attributes:
+      label: Anything else
+      description: Mockups, links to how another cart does it, or the KahunaCart version you are on if it matters.

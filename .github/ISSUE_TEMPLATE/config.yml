@@ -1,1 +1,14 @@
 blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://kahunacart.com/docs
+    about: Setup, configuration, payment providers, add-ons and the CLI. Most "how do I" questions are answered here.
+  - name: Ask on Discord
+    url: https://discord.gg/vMs3UTEAg4
+    about: Questions, ideas you want to talk through first, and help from other store owners.
+  - name: Security issue
+    url: https://kahunacart.com/contact
+    about: Found a vulnerability? Please report it privately through the contact form, not as a public issue.
+  - name: Licence, billing or account
+    url: https://kahunacart.com/contact
+    about: Problems with a purchase, a licence key or your kahunacart.com account are handled privately.

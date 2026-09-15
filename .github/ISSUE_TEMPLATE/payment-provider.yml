@@ -1,0 +1,102 @@
+name: Payment provider problem
+description: A checkout, webhook, refund or subscription problem with a specific payment provider
+title: "[Provider]: "
+labels: ["bug", "provider"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Provider problems almost always come down to one of three things: the connection, the webhook, or a mismatch between what the provider says and what the order says. The fields below get us to which one quickly. Never paste API keys, webhook signing secrets or full card details anywhere in this form.
+  - type: dropdown
+    id: provider
+    attributes:
+      label: Provider
+      options:
+        - Stripe
+        - PayPal
+        - Polar
+        - Mollie
+        - Square
+        - Paddle
+        - Lemon Squeezy
+        - Chargebee
+        - Checkout.com
+        - SumUp
+        - Invoice Ninja
+        - Shopify
+        - Snipcart
+        - Dummy (test provider)
+        - Another provider
+    validations:
+      required: true
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Mode
+      options:
+        - Sandbox or test mode
+        - Live
+    validations:
+      required: true
+  - type: dropdown
+    id: step
+    attributes:
+      label: Where it fails
+      options:
+        - Connecting the provider in Settings (the connection check fails)
+        - Starting checkout (no redirect, or an error before the provider page)
+        - Coming back from the provider (order stays pending, wrong status)
+        - Webhook delivery (provider says delivered, order never updates)
+        - Capture or settlement
+        - Refund
+        - Subscription renewal or cancellation
+        - Somewhere else
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: What happened
+      description: What the customer or you saw, what the order shows in the KahunaCart admin, and what the provider dashboard shows for the same payment.
+    validations:
+      required: true
+  - type: input
+    id: refs
+    attributes:
+      label: Order and provider references
+      description: The KahunaCart order number and the provider's own id for the payment or event (for example a Stripe `pi_…` or `evt_…`, a PayPal order id). These are references, not secrets.
+      placeholder: Order #1042, evt_1QZ…
+  - type: textarea
+    id: webhooks
+    attributes:
+      label: Webhook state
+      description: The output of `bin/plugin kahunacart webhooks`, or the webhook endpoint and its last delivery status from the provider dashboard (HTTP code and response body).
+      render: text
+  - type: textarea
+    id: report
+    attributes:
+      label: Support report
+      description: Paste the output of `bin/plugin kahunacart check --report`, or the text from KahunaCart → Health → Copy support report. It includes the provider and webhook reachability checks.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Grav log
+      description: The lines from `logs/grav.log` around the time of the payment. Trim anything that looks like a key or token.
+      render: text
+  - type: textarea
+    id: extra
+    attributes:
+      label: Anything else
+      description: Screenshots of the order in the admin and of the payment in the provider dashboard help a lot.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before you send
+      options:
+        - label: The connection check on the provider's settings page passes, or I have said above that it does not
+          required: true
+        - label: Nothing I pasted contains an API key, webhook secret or card number
+          required: true
